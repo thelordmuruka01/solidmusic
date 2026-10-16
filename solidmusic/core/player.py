@@ -54,9 +54,9 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
        bot_me = await self.bot.get_me()
        bot_username = bot_me.username
        print(f"[+] Bot Username: {bot_username}")
-      solidmusic.core.username = bot_username
-      print("[+] START PyTgCalls CLIENT")
-      self.call.start()
+       solidmusic.core.username = bot_username
+       print("[+] START PyTgCalls CLIENT")
+       self.call.start()
    try:
      await self.user.join_chat("HQ_Tracks")
      except UserAlreadyParticipant:

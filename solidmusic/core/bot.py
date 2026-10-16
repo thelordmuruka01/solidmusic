@@ -1,10 +1,8 @@
 import asyncio
 from typing import Optional, Union
-
 from pyrogram.types import InlineKeyboardMarkup, ChatInviteLink
-
 from .clients import bot
-from database.lang_utils import get_message as gm
+from solidmusic.database.lang_utils import get_message as gm
 
 
 class Bot:

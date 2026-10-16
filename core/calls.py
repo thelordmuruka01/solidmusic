@@ -144,6 +144,7 @@ class Call:
         except GroupCallNotFound:
             return False
 
+    
     async def start_call(self, chat_id: int):
         users = self.user
         try:
@@ -154,23 +155,27 @@ class Call:
                         peer=await users.resolve_peer(chat_id),
                         random_id=random.randint(10000, 999999999),
                     )
-                )              
-            else:
-                pass
+                )
         except (ChannelPrivate, ChatForbidden):
             try:
-                await self.bot.unban_member(chat_id, (await self.bot.get_me()).id)
+                await self.bot.unban_member(
+                    chat_id, (await self.bot.get_me()).id
+                )
                 await self.start_call(chat_id)
-            except PeerIdInvalid:               
+            except PeerIdInvalid:
                 await self.start_call(chat_id)
             except (ChatForbidden, ChannelPrivate):
-                self.playlist.delete_chat(chat_id)              
+                self.playlist.delete_chat(chat_id)
         except ChatAdminRequired:
             try:
-                await self.bot.promote_member(chat_id, (await users.get_me()).id)
+                await self.bot.promote_member(
+                    chat_id, (await users.get_me()).id
+                )
                 await self.start_call(chat_id)
-            except PeerIdInvalid:               
-                await self.bot.promote_member(chat_id, (await users.get_me()).id)
+            except PeerIdInvalid:
+                await self.bot.promote_member(
+                    chat_id, (await users.get_me()).id
+                )
                 await self.start_call(chat_id)
 
     async def end_call(self, chat_id: int):
@@ -178,12 +183,15 @@ class Call:
         try:
             call = await self.call.get_call(chat_id)
             await self.user.send(DiscardGroupCall(call=call))
-            
+        except Exception as e:
+            print(f"Failed to end call in {chat_id}: {e}")
+
     async def change_vol(self, chat_id: int, volume: int):
         call = self.call
         is_active = self.is_call_active(chat_id)
         if is_active:
             await call.change_volume_call(chat_id, volume)
+
             
     async def change_streaming_status(self, status: str, chat_id: int):
         call = self.call

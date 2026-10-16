@@ -1,5 +1,5 @@
 import asyncio
-from core.player import player
+from solidmusic.core.player import player
 from os import path, mkdir
 
 

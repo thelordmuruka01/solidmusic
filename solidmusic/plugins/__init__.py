@@ -48,7 +48,7 @@ def paginate_module(chat_id: int, user_id: int):
 def load_module(user_id: Optional[int] = 0):
     for mods in __all_module():
         try:
-            imported_mods = import_module(f"plugins.{mods}")
+            imported_mods = import_module(f"solidmusic.plugins.{mods}")
             if user_id:
                 pass
             else:

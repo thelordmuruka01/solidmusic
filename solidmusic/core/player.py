@@ -10,7 +10,6 @@ from configs import config
 from .calls import leave_from_inactive_call
 from .telegram_call import TelegramPlayer
 from .youtube_call import YoutubePlayer
-from solidmusic.core import username as usernames
 from solidmusic.plugins import load_module
 import solidmusic.core as core_module
 

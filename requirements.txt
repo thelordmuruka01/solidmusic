@@ -1,3 +1,4 @@
+os
 flask
 threading
 py-tgcalls==1.0.9

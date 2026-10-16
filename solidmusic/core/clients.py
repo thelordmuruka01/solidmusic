@@ -3,7 +3,12 @@ from pytgcalls import PyTgCalls
 from configs import config
 
 
-user = Client(config.SESSION, config.API_ID, config.API_HASH)
+user = Client(
+    "userbot",
+    api_id=config.API_ID,
+    api_hash=config.API_HASH,
+    session_string=config.SESSION,
+)
 
 
 bot = Client(

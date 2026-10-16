@@ -1,8 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-
-from database.lang_utils import get_message as gm
-from functions.lyrics_search import get_lyrics, get_artist, get_title, parse_url
+from solidmusic.database.lang_utils import get_message as gm
+from solidmusic.functions.lyrics_search import get_lyrics, get_artist, get_title, parse_url
 
 
 @Client.on_message(filters.command("lyrics"))

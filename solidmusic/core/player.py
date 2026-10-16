@@ -46,12 +46,13 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
     async def run(self):
         self.db.init()
         print("[+] START BOT CLIENT")
-        self.bot.start()
-        self.user.start()
+        await self.bot.start()
+    await self.user.start()
         print("[+] LOAD ALL MODULES")
         load_module()
-        print("[+] Getting Bot Username".upper())
-        bot_username = await self.bot.get_username()
+        print("[+] GETTING BOT USERNAME")
+        bot_me = await self.bot.get_me()
+        bot_username = bot_me.username
         print(f"[+] Bot Username: {bot_username}")
         solidmusic.core.username = bot_username
         print("[+] START PyTgCalls CLIENT")

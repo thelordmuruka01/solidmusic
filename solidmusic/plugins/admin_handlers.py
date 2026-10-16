@@ -3,11 +3,11 @@ import sys
 from pyrogram import Client, filters, types
 
 from configs import config
-from core.bot import Bot
-from core.player import player
-from functions.decorators import authorized_only
+from solidmusic.core.bot import Bot
+from solidmusic.core.player import player
+from solidmusic.functions.decorators import authorized_only
 from os import execle, environ
-from database.lang_utils import get_message as gm
+from solidmusic.database.lang_utils import get_message as gm
 
 
 @Client.on_message(filters.command("pause"))

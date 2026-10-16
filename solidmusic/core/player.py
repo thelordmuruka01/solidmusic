@@ -12,7 +12,15 @@ from .telegram_call import TelegramPlayer
 from .youtube_call import YoutubePlayer
 from solidmusic.plugins import load_module
 import solidmusic.core as core_module
+from pyrogram.errors import FloodWait
+import asyncio
 
+try:
+    await self.bot.start()
+except FloodWait as e:
+    print(f"Telegram login rate-limited. Wait {e.value} seconds.")
+    await asyncio.sleep(e.value)
+    await self.bot.start()
 
 scheduler = AsyncIOScheduler()
 

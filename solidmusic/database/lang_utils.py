@@ -49,3 +49,16 @@ def get_lang(lang: str = None):
     if lang:
         return langs[lang]
     return kode
+
+async def gm(chat_id: int, key: str, format_key=None) -> str:
+    if not format_key:
+        format_key = ["{}"]
+    get_chat = await chat_db.get_chat(chat_id)
+    chat_lang = get_chat.get("chat_lang")
+    try:
+        return lang[chat_lang][key].format(*format_key)
+    except KeyError:
+        try:
+            return lang["id"][key].format(*format_key)
+        except KeyError as e:
+            raise KeyError(f"Cannot found language with code {chat_lang} and key {key}") from e

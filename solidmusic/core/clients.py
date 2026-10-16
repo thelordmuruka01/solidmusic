@@ -52,4 +52,4 @@ print("USER MODULE:", type(user).__module__)
 print("CLIENT CLASS:", type(Client))
 print("CLIENT MODULE:", Client.__module__)
 
-call_py = PyTgCalls(user)
+call_py = PyTgCalls(RawClient)

@@ -58,17 +58,17 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
        print("[+] START PyTgCalls CLIENT")
        self.call.start()
    try:
-     await self.user.join_chat("HQ_Tracks")
-     except UserAlreadyParticipant:
-     pass
-     print("[+] CLIENT RUNNING")
-     await idle()
-    print("[+] STOPPING BOT")
-    self.db.disconnect()
-    if path.exists("downloads"):
-       rmtree("downloads")
-    if path.exists("image"):
-       rmtree("image")
+      await self.user.join_chat("HQ_Tracks")
+      except UserAlreadyParticipant:
+  pass
+      print("[+] CLIENT RUNNING")
+      await idle()
+      print("[+] STOPPING BOT")
+      self.db.disconnect()
+   if path.exists("downloads"):
+      rmtree("downloads")
+  if path.exists("image"):
+     rmtree("image")
     self.bot.stop()
     return sys.exit()
 

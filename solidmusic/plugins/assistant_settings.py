@@ -2,10 +2,10 @@ from pyrogram import Client, filters
 from pyrogram.types import Message
 from pyrogram.errors import UserAlreadyParticipant, UserNotParticipant
 
-from core.clients import user
-from core.bot import Bot
-from database.lang_utils import get_message as gm
-from functions.decorators import authorized_only
+from solidmusic.core.clients import user
+from solidmusic.core.bot import Bot
+from solidmusic.database.lang_utils import get_message as gm
+from solidmusic.functions.decorators import authorized_only
 
 
 @Client.on_message(filters.command("userbotjoin"))

@@ -13,7 +13,7 @@ from .youtube_call import YoutubePlayer
 from solidmusic.plugins import load_module
 import solidmusic.core as core_module
 
-username = usernames
+
 scheduler = AsyncIOScheduler()
 
 
@@ -71,18 +71,14 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             bot_username = bot_me.username
             print(f"[+] Bot Username: {bot_username}")
             core_module.username = bot_username
-
             print("[+] START PyTgCalls CLIENT")
             self.call.start()
-
             try:
                 await self.user.join_chat("HQ_Tracks")
             except UserAlreadyParticipant:
                 pass
-
             print("[+] CLIENT RUNNING")
             await idle()
-
         finally:
             print("[+] STOPPING BOT")
 

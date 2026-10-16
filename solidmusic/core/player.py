@@ -53,7 +53,6 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
         await self.get_username()
         print("⌊ [ INFO ] START PyTgCalls CLIENT")
         await self.call.start()
-        await self.join_channel()
         if config.AUTO_LEAVE:
             print("[ INFO ] STARTING SCHEDULER")
             scheduler.configure(timezone=pytz.utc)

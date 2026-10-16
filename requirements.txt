@@ -1,4 +1,4 @@
-py-tgcalls==0.8.1
+py-tgcalls
 pyrogram==1.2.11
 git+https://github.com/yt-dlp/yt-dlp@master
 bs4==0.0.1

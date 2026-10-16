@@ -1,3 +1,4 @@
+from __future__ import annotations
 from pyrogram import Client
 from pytgcalls import PyTgCalls
 from configs import config

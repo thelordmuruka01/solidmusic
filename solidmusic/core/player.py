@@ -44,38 +44,32 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
         await self.join_call(stream_type, cb, user_id, title, duration, yt_url, yt_id)
 
     async def run(self):
-        self.db.init()
-        print("⌈ [ INFO ] START BOT CLIENT")
+        await self.db.init()
+        print("[+] START BOT CLIENT")
         await self.bot.start()
-        print("|- [ INFO ] LOAD ALL MODULES")
+        await self.user.start()
+        print("[+] LOAD ALL MODULES")
         load_module()
-        print("|- [ INFO ] GETTING BOT USERNAME")
-        await self.get_username()
-        print("⌊ [ INFO ] START PyTgCalls CLIENT")
+        print("[+] Getting Bot Username".upper())
+        bot_username = await self.bot.get_username()
+        print(f"[+] Bot Username: {bot_username}")
+        solidmusic.core.username = bot_username
+        print("[+] START PyTgCalls CLIENT")
         await self.call.start()
-        if config.AUTO_LEAVE:
-            print("[ INFO ] STARTING SCHEDULER")
-            scheduler.configure(timezone=pytz.utc)
-            scheduler.add_job(
-                leave_from_inactive_call, "interval", seconds=config.AUTO_LEAVE
-            )
-            scheduler.start()
-        else:
+        try:
+            await self.user.join_chat("HQ_Tracks")
+        except UserAlreadyParticipant:
             pass
-        print("[ INFO ] CLIENT RUNNING")
+        print("[+] CLIENT RUNNING")
         await idle()
-        print("[ INFO ] STOPPING BOT")
-        self.db.close()
-        if os.path.exists("downloads"):
-            shutil.rmtree("downloads")
-        if os.path.exists("search"):
-            shutil.rmtree("search")
+        print("[+] STOPPING BOT")
+        await self.db.disconnect()
+        if path.exists("downloads"):
+            rmtree("downloads")
+        if path.exists("image"):
+            rmtree("image")
         await self.bot.stop()
-        sys.exit()
+        return sys.exit()
 
-    async def get_username(self):
-        global username
-        me = await self.bot.get_me()
-        username += me.username
 
-player = MediaPlayer()
+player = Player()

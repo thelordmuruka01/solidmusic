@@ -2,20 +2,17 @@ import os.path
 import shutil
 import sys
 from typing import Dict
-
 import pytz
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram.errors import UserAlreadyParticipant
-
 from configs import config
 from pyrogram import idle
 from pyrogram.types import CallbackQuery
-
 from .calls import leave_from_inactive_call
 from .telegram_call import TelegramPlayer
 from .youtube_call import YoutubePlayer
-from core import username as usernames
-from plugins import load_module
+from solidmusic.core import username as usernames
+from solidmusic.plugins import load_module
 
 username = usernames
 scheduler = AsyncIOScheduler()

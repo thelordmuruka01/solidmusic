@@ -1,15 +1,14 @@
 from pyrogram import Client, filters, types
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-
-from core.player import player
-from database.lang_utils import get_message
-from functions.youtube_utils import (
+from solidmusic.core.player import player
+from solidmusic.database.lang_utils import get_message
+from solidmusic.functions.youtube_utils import (
     extract_info,
     stream_result,
     yt_search,
 )
-from functions.decorators import only_admin
-from functions.markup_button import process_button
+from solidmusic.functions.decorators import only_admin
+from solidmusic.functions.markup_button import process_button
 
 
 def extract_all(query: str, chat_id: int, user_id: int, status: str):

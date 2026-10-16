@@ -72,4 +72,4 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
         return sys.exit()
 
 
-player = Player()
+player = MediaPlayer()

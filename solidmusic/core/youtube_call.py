@@ -6,8 +6,8 @@ from pytgcalls import StreamType
 from pytgcalls.exceptions import NoActiveGroupCall
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
 
-from functions.youtube_utils import get_audio_direct_link, get_video_direct_link
-from database.lang_utils import get_message as gm
+from solidmusic.functions.youtube_utils import get_audio_direct_link, get_video_direct_link
+from solidmusic.database.lang_utils import get_message as gm
 from .calls import Call
 
 

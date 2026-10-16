@@ -1,8 +1,7 @@
 from pyrogram import Client, filters, types
-
-from database.sudo_database import SudoDB
-from core.bot import Bot
-from functions.decorators import authorized_only
+from solidmusic.database.sudo_database import SudoDB
+from solidmusic.core.bot import Bot
+from solidmusic.functions.decorators import authorized_only
 
 
 async def process_sudo(message: types.Message, status: str):

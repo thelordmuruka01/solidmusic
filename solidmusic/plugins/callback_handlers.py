@@ -1,20 +1,18 @@
 from datetime import datetime, timedelta
-
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQuery
-
 from configs import config
-from core.player import player
-from functions.youtube_utils import (
+from solidmusic.core.player import player
+from solidmusic.functions.youtube_utils import (
     prev_search,
     next_search,
     extract_info,
     stream_result,
 )
-from functions.markup_button import process_button, start_markup
+from solidmusic.functions.markup_button import process_button, start_markup
 
-from database.lang_utils import get_message as gm
-from database.chat_database import ChatDB
+from solidmusic.database.lang_utils import get_message as gm
+from solidmusic.database.chat_database import ChatDB
 from . import helps, paginate_module, modules, load_module
 
 

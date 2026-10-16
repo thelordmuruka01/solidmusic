@@ -1,8 +1,7 @@
 from . import paginate_module, load_module, modules
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
-
-from database.lang_utils import get_message as gm, get_message
+from solidmusic.database.lang_utils import get_message as gm, get_message
 
 
 @Client.on_message(filters.command("help"))

@@ -1,6 +1,6 @@
 py-tgcalls==1.0.9
 pyrogram==1.2.11
-git+https://github.com/yt-dlp/yt-dlp@master
+yt-dlp==2024.10.22
 bs4==0.0.1
 beautifulsoup4==4.10.0
 requests==2.26.0

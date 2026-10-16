@@ -12,7 +12,7 @@ from .telegram_call import TelegramPlayer
 from .youtube_call import YoutubePlayer
 from solidmusic.core import username as usernames
 from solidmusic.plugins import load_module
-
+import solidmusic.core as core_module
 
 username = usernames
 scheduler = AsyncIOScheduler()
@@ -70,14 +70,11 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             print("[+] GETTING BOT USERNAME")
             bot_me = await self.bot.get_me()
             bot_username = bot_me.username
-
             print(f"[+] Bot Username: {bot_username}")
-
-            # Update the shared username value.
-            usernames = bot_username
+            core_module.username = bot_username
 
             print("[+] START PyTgCalls CLIENT")
-            await self.call.start()
+            self.call.start()
 
             try:
                 await self.user.join_chat("HQ_Tracks")

@@ -4,10 +4,10 @@ from pyrogram import types, Client
 from pyrogram.errors import MessageDeleteForbidden
 
 import configs
-from database.sudo_database import SudoDB
-from database.chat_database import ChatDB
-from core.bot import Bot
-from core.clients import user
+from solidmusic.database.sudo_database import SudoDB
+from solidmusic.database.chat_database import ChatDB
+from solidmusic.core.bot import Bot
+from solidmusic.core.clients import user
 
 db = SudoDB()
 chat_db = ChatDB()

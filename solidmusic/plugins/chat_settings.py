@@ -4,11 +4,11 @@ from pyrogram.types import (
     InlineKeyboardMarkup as MarkupKeyboard,
     InlineKeyboardButton as ButtonKeyboard,
 )
-from core.bot import Bot
-from core.clients import user
+from solidmusic.core.bot import Bot
+from solidmusic.core.clients import user
 from configs import config
-from database.chat_database import ChatDB
-from functions.decorators import authorized_only
+from solidmusic.database.chat_database import ChatDB
+from solidmusic.functions.decorators import authorized_only
 
 
 def check_cmd(message: Message):

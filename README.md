@@ -18,6 +18,9 @@ and <a href="https://github.com/pyrogram/pyrogram">Pyrogram</a>
     <a href="https://github.com/DoellBarr/solidmusic"><img src="https://img.shields.io/github/stars/DoellBarr/solidmusic?logo=github"></a>
 </div>
 
+[![Render](https://img.shields.io/badge/Deploy-Render-46E3B7?style=for-the-badge&logo=render&logoColor=black)](https://render.com/deploy?repo=https://github.com/thelordmuruka01/solidmusic)
+
+
 <h3>Help Need </h3>
 <div>
     Help me to translate this repo, click the localized button <br /> 

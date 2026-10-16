@@ -115,11 +115,14 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
                 pass
 
             print("[+] CLIENT RUNNING")
-            print("[+] Waiting for Telegram shutdown signals...")
-            await idle()
-            print("[!] idle() returned; checking why the bot is exiting.")
-        finally:
-            print("[+] STOPPING BOT")
+            print("[+] Entering idle()")
+
+            try:
+                await idle()
+            print("[!] idle() returned normally")
+            except BaseException as exc:
+            print(f"[!] idle() interrupted: {type(exc).__name__}: {exc}")
+            raise
 
             for directory in ("downloads", "image"):
                 path = Path(directory)

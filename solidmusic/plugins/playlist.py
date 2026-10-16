@@ -1,8 +1,7 @@
 from pyrogram import Client, filters, types
-
-from core.player import player
-from database.lang_utils import get_message as gm
-from functions.decorators import authorized_only
+from solidmusic.core.player import player
+from solidmusic.database.lang_utils import get_message as gm
+from solidmusic.functions.decorators import authorized_only
 
 
 @Client.on_message(filters.command("playlist"))

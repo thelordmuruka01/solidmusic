@@ -47,4 +47,9 @@ bot = Client(
     plugins={"root": "solidmusic.plugins"},
 )
 
+print("USER CLASS:", type(user))
+print("USER MODULE:", type(user).__module__)
+print("CLIENT CLASS:", type(Client))
+print("CLIENT MODULE:", Client.__module__)
+
 call_py = PyTgCalls(user)

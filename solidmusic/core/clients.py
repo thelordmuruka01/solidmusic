@@ -1,10 +1,9 @@
 from __future__ import annotations
 from pyrogram import Client
+from pyrogram.types import User
 from pytgcalls import PyTgCalls
 from configs import config
 from typing import Any, Iterable
-from pyrogram import Client as RawClient
-from pyrogram.types import User
 
 
 class Client(RawClient):

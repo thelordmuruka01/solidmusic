@@ -3,10 +3,8 @@ from importlib import import_module
 from os.path import join, dirname, realpath
 from os import listdir
 from typing import Dict, List, Optional
-
 from pyrogram.types import InlineKeyboardButton
-
-from database.lang_utils import get_message
+from solidmusic.database.lang_utils import get_message
 
 plugins_dir = join(dirname(realpath(__file__)), ".")
 

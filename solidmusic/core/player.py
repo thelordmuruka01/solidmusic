@@ -67,10 +67,10 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
       self.db.disconnect()
    if path.exists("downloads"):
       rmtree("downloads")
-  if path.exists("image"):
-     rmtree("image")
-    self.bot.stop()
-    return sys.exit()
+   if path.exists("image"):
+      rmtree("image")
+      self.bot.stop()
+      return sys.exit()
 
 
 player = MediaPlayer()

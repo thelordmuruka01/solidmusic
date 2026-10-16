@@ -2,12 +2,10 @@
 import sys
 from pathlib import Path
 from typing import Dict
-
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram import idle
 from pyrogram.errors import UserAlreadyParticipant
 from pyrogram.types import CallbackQuery
-
 from configs import config
 from .calls import leave_from_inactive_call
 from .telegram_call import TelegramPlayer
@@ -76,7 +74,7 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             print(f"[+] Bot Username: {bot_username}")
 
             # Update the shared username value.
-            usernames.username = bot_username
+            solidmusic.core.username = bot_username
 
             print("[+] START PyTgCalls CLIENT")
             await self.call.start()
@@ -93,23 +91,7 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             print("[+] STOPPING BOT")
 
             # Stop the call client if it was initialized.
-            try:
-                await self.call.stop()
-            except Exception as exc:
-                print(f"[!] Call client stop: {exc}")
-
-            try:
-                await self.user.stop()
-            except Exception as exc:
-                print(f"[!] User client stop: {exc}")
-
-            try:
-                await self.bot.stop()
-            except Exception as exc:
-                print(f"[!] Bot client stop: {exc}")
-
-            self.db.disconnect()
-
+           
             for directory in ("downloads", "image"):
                 path = Path(directory)
                 if path.exists() and path.is_dir():

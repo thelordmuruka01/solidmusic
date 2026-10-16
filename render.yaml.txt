@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: TgMusicBot
+    env: python
+    plan: free
+
+    buildCommand: "pip3 install --no-cache-dir --upgrade --requirement requirements.txt"
+    startCommand: "python3 main.py"
+
+    envVars:
+      - key: API_ID
+        sync: false
+
+      - key: API_HASH
+        sync: false
+
+      - key: BOT_TOKEN
+        sync: false
+
+      - key: OWNER_ID
+        sync: false
+
+      - key: CHANNEL_LINK
+        sync: false
+
+      - key: GROUP_LINK
+        sync: false
+
+      - key: UPSTREAM_REPO
+        value: "https://github.com/AshokShau/TgMusicBot"
+
+      - key: SESSION
+        sync: false
+
+      - key: DURATION_LIMIT
+        value: 1000
+
+
+
+      
+
+

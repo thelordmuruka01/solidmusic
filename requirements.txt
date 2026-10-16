@@ -1,6 +1,6 @@
 py-tgcalls==1.0.9
 ntgcalls==1.0.2
-pyrogram==1.2.11
+pyrogram==2.0.106
 yt-dlp==2024.10.22
 bs4==0.0.1
 beautifulsoup4==4.10.0

@@ -1,31 +1,54 @@
 
-import sys
+import asyncio
+import shutil
 from pathlib import Path
 from typing import Dict
+
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from pyrogram import idle
-from pyrogram.errors import UserAlreadyParticipant
+from pyrogram.errors import FloodWait, UserAlreadyParticipant
 from pyrogram.types import CallbackQuery
-from configs import config
+
 from .calls import leave_from_inactive_call
 from .telegram_call import TelegramPlayer
 from .youtube_call import YoutubePlayer
 from solidmusic.plugins import load_module
 import solidmusic.core as core_module
-from pyrogram.errors import FloodWait
-import asyncio
 
-try:
-    await self.bot.start()
-except FloodWait as e:
-    print(f"Telegram login rate-limited. Wait {e.value} seconds.")
-    await asyncio.sleep(e.value)
-    await self.bot.start()
 
 scheduler = AsyncIOScheduler()
 
 
 class MediaPlayer(TelegramPlayer, YoutubePlayer):
+
+    async def start_bot_safely(self):
+        try:
+            await self.bot.start()
+            return True
+
+        except FloodWait as e:
+            wait_seconds = int(e.value) + 5
+
+            print(
+                f"Telegram FLOOD_WAIT: waiting "
+                f"{wait_seconds} seconds before one retry."
+            )
+
+            await asyncio.sleep(wait_seconds)
+
+            try:
+                await self.bot.start()
+                return True
+
+            except FloodWait as retry_error:
+                print(
+                    "Telegram login is still rate-limited. "
+                    f"Telegram requires another "
+                    f"{retry_error.value} seconds. "
+                    "Stopping startup without another retry."
+                )
+                return False
+
     async def join_call(
         self,
         stream_type: str,
@@ -68,7 +91,10 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             self.db.init()
 
             print("[+] START BOT CLIENT")
-            await self.bot.start()
+
+            if not await self.start_bot_safely():
+                return
+
             await self.user.start()
 
             print("[+] LOAD ALL MODULES")
@@ -77,28 +103,28 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             print("[+] GETTING BOT USERNAME")
             bot_me = await self.bot.get_me()
             bot_username = bot_me.username
+
             print(f"[+] Bot Username: {bot_username}")
             core_module.username = bot_username
+
             print("[+] START PyTgCalls CLIENT")
             self.call.start()
+
             try:
                 await self.user.join_chat("HQ_Tracks")
             except UserAlreadyParticipant:
                 pass
+
             print("[+] CLIENT RUNNING")
             await idle()
+
         finally:
             print("[+] STOPPING BOT")
 
-            # Stop the call client if it was initialized.
-           
             for directory in ("downloads", "image"):
                 path = Path(directory)
                 if path.exists() and path.is_dir():
-                    import shutil
-                    shutil.rmtree(path)
-
-        return
+                    shutil.rmtree(path, ignore_errors=True)
 
 
 player = MediaPlayer()

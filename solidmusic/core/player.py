@@ -44,33 +44,33 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
         await self.join_call(stream_type, cb, user_id, title, duration, yt_url, yt_id)
 
     async def run(self):
-    self.db.init()
-    print("[+] START BOT CLIENT")
-    await self.bot.start()
-    await self.user.start()
-    print("[+] LOAD ALL MODULES")
-    load_module()
-    print("[+] GETTING BOT USERNAME")
-    bot_me = await self.bot.get_me()
-    bot_username = bot_me.username
-        print(f"[+] Bot Username: {bot_username}")
-        solidmusic.core.username = bot_username
-        print("[+] START PyTgCalls CLIENT")
-        self.call.start()
-        try:
-            await self.user.join_chat("HQ_Tracks")
-        except UserAlreadyParticipant:
-            pass
-        print("[+] CLIENT RUNNING")
-        await idle()
-        print("[+] STOPPING BOT")
-        self.db.disconnect()
-        if path.exists("downloads"):
-            rmtree("downloads")
-        if path.exists("image"):
-            rmtree("image")
-        self.bot.stop()
-        return sys.exit()
+       self.db.init()
+       print("[+] START BOT CLIENT")
+       await self.bot.start()
+       await self.user.start()
+       print("[+] LOAD ALL MODULES")
+       load_module()
+       print("[+] GETTING BOT USERNAME")
+       bot_me = await self.bot.get_me()
+       bot_username = bot_me.username
+       print(f"[+] Bot Username: {bot_username}")
+      solidmusic.core.username = bot_username
+      print("[+] START PyTgCalls CLIENT")
+      self.call.start()
+   try:
+     await self.user.join_chat("HQ_Tracks")
+     except UserAlreadyParticipant:
+     pass
+     print("[+] CLIENT RUNNING")
+     await idle()
+    print("[+] STOPPING BOT")
+    self.db.disconnect()
+    if path.exists("downloads"):
+       rmtree("downloads")
+    if path.exists("image"):
+       rmtree("image")
+    self.bot.stop()
+    return sys.exit()
 
 
 player = MediaPlayer()

@@ -1,8 +1,10 @@
+
 import asyncio
-from solidmusic.core.player import player
 from os import path, mkdir
+
 from health_server import start_health_server
 from solidmusic.core.player import player
+
 
 def main():
     if not path.exists("search"):
@@ -10,16 +12,14 @@ def main():
 
     start_health_server()
 
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(player.run())
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
 
-main()
-
-def main():
-    if not path.exists("search"):
-        mkdir("search")
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(player.run())
+    try:
+        loop.run_until_complete(player.run())
+    finally:
+        loop.close()
 
 
-main()
+if __name__ == "__main__":
+    main()

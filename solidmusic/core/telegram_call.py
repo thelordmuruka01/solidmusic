@@ -1,14 +1,12 @@
 import asyncio
 import datetime
-
 from pyrogram.errors import FloodWait, UserNotParticipant
 from pyrogram.types import Message
 from pytgcalls import StreamType
 from pytgcalls.exceptions import NoActiveGroupCall
 from pytgcalls.types.input_stream import AudioPiped, AudioVideoPiped
-
 from .calls import Call
-from database.lang_utils import get_message as gm
+from solidmusic.database.lang_utils import get_message as gm
 
 
 class TelegramPlayer(Call):

@@ -108,8 +108,7 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             core_module.username = bot_username
 
             print("[+] START PyTgCalls CLIENT")
-            self.call.start()
-
+            await self.call.start()
             try:
                 await self.user.join_chat("HQ_Tracks")
             except UserAlreadyParticipant:

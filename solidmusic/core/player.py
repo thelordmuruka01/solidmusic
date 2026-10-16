@@ -74,7 +74,7 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
             print(f"[+] Bot Username: {bot_username}")
 
             # Update the shared username value.
-            solidmusic.core.username = bot_username
+            usernames = bot_username
 
             print("[+] START PyTgCalls CLIENT")
             await self.call.start()

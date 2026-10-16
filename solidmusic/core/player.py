@@ -115,8 +115,9 @@ class MediaPlayer(TelegramPlayer, YoutubePlayer):
                 pass
 
             print("[+] CLIENT RUNNING")
+            print("[+] Waiting for Telegram shutdown signals...")
             await idle()
-
+            print("[!] idle() returned; checking why the bot is exiting.")
         finally:
             print("[+] STOPPING BOT")
 
